@@ -16,7 +16,8 @@ public class LoginPage extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
-    public void skipSignIn() {
+    public HomePage skipSignIn() {
         tap(skipSignInBtn);
+        return new HomePage(driver);
     }
 }

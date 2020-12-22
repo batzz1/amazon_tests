@@ -1,6 +1,8 @@
 package qa.base;
 
 
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileBy;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -35,7 +37,7 @@ public class BasePage {
      * @param element
      */
     public void tap(WebElement element) {
-        waitForElementToBeClickable(element, 20).clear();
+        waitForElementToBeClickable(element, 20).click();
     }
 
     /**
@@ -92,6 +94,11 @@ public class BasePage {
         } catch (InterruptedException ex) {
             ex.printStackTrace();
         }
+    }
+
+    public WebElement scrollToAnElementByText(AppiumDriver<WebElement> driver, String text) {
+        return driver.findElement(MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector())" +
+                ".scrollIntoView(new UiSelector().text(\"" + text + "\"));"));
     }
 
 }

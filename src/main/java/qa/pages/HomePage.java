@@ -24,11 +24,12 @@ public class HomePage extends BasePage {
 
     public void searchProduct(String productName) {
         tap(searchBox);
-        sendKeys(searchBox,productName);
+        sendKeys(searchBox, productName);
     }
 
-    public void selectFromSearchSuggestions() {
+    public ProductsPage selectFromSearchSuggestions() {
         waitForPresenceOfAllElements(By.id("iss_search_dropdown_item_text"));
         tap(searchBoxSuggestions.get(0));
+        return new ProductsPage(driver);
     }
 }
