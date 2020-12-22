@@ -3,6 +3,7 @@ package qa.base;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -19,7 +20,7 @@ public class TestBase {
         try {
             props = new Properties();
             FileInputStream fileInputStream = new FileInputStream(System.getProperty("user.dir")
-                    + "src/main/resources/config.properties");
+                    + "/src/main/resources/config.properties");
             props.load(fileInputStream);
         } catch (FileNotFoundException fNException) {
             fNException.printStackTrace();
@@ -29,6 +30,7 @@ public class TestBase {
     }
 
     public static void initialization() {
+        String appPath = System.getProperty("user.dir") + File.separator + "app" + File.separator;
         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
         System.out.printf("This " + props.getProperty("androidAutomationName"));
         System.out.printf("This " + props.getProperty("androidAppPackage"));
@@ -37,6 +39,9 @@ public class TestBase {
         desiredCapabilities.setCapability("appPackage", props.getProperty("androidAppPackage"));
         desiredCapabilities.setCapability("appActivity", props.getProperty("androidAppActivity"));
         desiredCapabilities.setCapability("app", props.getProperty("androidAppLocation"));
+        desiredCapabilities.setCapability("app", appPath +
+                props.getProperty("appName"));
+
         try {
             driver = new AndroidDriver(new URL(props.getProperty("appiumURL")), desiredCapabilities);
         } catch (MalformedURLException e) {
