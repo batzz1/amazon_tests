@@ -96,9 +96,22 @@ public class BasePage {
         }
     }
 
-    public WebElement scrollToAnElementByText(AppiumDriver<WebElement> driver, String text) {
+    public WebElement scrollToAnElementByText(String text) {
         return driver.findElement(MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector())" +
                 ".scrollIntoView(new UiSelector().text(\"" + text + "\"));"));
     }
 
+    /**
+     * Scrolls and click on text
+     * @param visibleText
+     */
+    public void scrollAndClick(String visibleText) {
+        driver.findElementByAndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\"" + visibleText + "\").instance(0))").click();
+    }
+
+    public void scrollToText(String text) {
+        driver.findElementByAndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\"" + text + "\").instance(0))").isEnabled();
+    }
 }
+
+

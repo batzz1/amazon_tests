@@ -11,6 +11,9 @@ public class LoginPage extends BasePage {
     @FindBy(id = "skip_sign_in_button")
     private WebElement skipSignInBtn;
 
+    @FindBy(id = "signin_to_yourAccount")
+    private WebElement signInLabel;
+
     public LoginPage(AndroidDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
@@ -19,5 +22,9 @@ public class LoginPage extends BasePage {
     public HomePage skipSignIn() {
         tap(skipSignInBtn);
         return new HomePage(driver);
+    }
+
+    public String getSignInText() {
+        return getText(signInLabel);
     }
 }

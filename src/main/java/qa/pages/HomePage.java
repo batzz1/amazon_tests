@@ -17,6 +17,9 @@ public class HomePage extends BasePage {
     @FindBy(id = "iss_search_dropdown_item_text")
     private List<WebElement> searchBoxSuggestions;
 
+    @FindBy(id = "action_bar_cart_image")
+    private WebElement cartIcon;
+
     public HomePage(AndroidDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
@@ -31,5 +34,9 @@ public class HomePage extends BasePage {
         waitForPresenceOfAllElements(By.id("iss_search_dropdown_item_text"));
         tap(searchBoxSuggestions.get(0));
         return new ProductsPage(driver);
+    }
+
+    public boolean isCartIconDisplayed() {
+        return waitForElementToBeVisible(cartIcon).isDisplayed();
     }
 }

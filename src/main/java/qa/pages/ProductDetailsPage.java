@@ -11,8 +11,11 @@ public class ProductDetailsPage extends BasePage {
     @FindBy(id = "add-to-cart-button")
     private WebElement addToCartBtn;
 
-    @FindBy(id = "a-autoid-2-announce")
+    @FindBy(xpath = "//android.widget.Button[@text='Proceed to checkout']")
     private WebElement proceedToCheckOutBtn;
+
+    @FindBy(xpath = "//android.widget.TextView[@text='Added to cart']")
+    private WebElement addedToCartlabel;
 
     public ProductDetailsPage(AndroidDriver driver) {
         super(driver);
@@ -20,11 +23,14 @@ public class ProductDetailsPage extends BasePage {
     }
 
     public void tapOnAddToCart() {
-        scrollToAnElementByText(driver, "Add to Cart");
-        tap(addToCartBtn);
+        scrollAndClick("Add to Cart");
     }
 
     public void tapOnCheckOut() {
         tap(proceedToCheckOutBtn);
+    }
+
+    public boolean isProductAddedToCart() {
+        return waitForElementToBeVisible(addedToCartlabel).isDisplayed();
     }
 }
