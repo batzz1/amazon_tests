@@ -5,5 +5,4 @@ target/*
 screenshots/
 test-output
 gradle/wrapper
-/app/*
 .gradle/*
