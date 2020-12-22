@@ -18,6 +18,36 @@ public class BasePage {
         wait = new WebDriverWait(this.driver, 40);
     }
 
+    /***
+     * Type Text
+     * @param element
+     * @param text
+     */
+    public void sendKeys(WebElement element, String text) {
+        waitForElementToBeVisible(element).click();
+        element.clear();
+        element.sendKeys(text);
+    }
+
+    /**
+     * Tap on Element
+     *
+     * @param element
+     */
+    public void tap(WebElement element) {
+        waitForElementToBeClickable(element, 20).clear();
+    }
+
+    /**
+     * Get Text from a WebElement
+     *
+     * @param element
+     * @return
+     */
+    public String getText(WebElement element) {
+        return waitForElementToBeVisible(element, 20).getText();
+    }
+
     public WebElement waitForElementToBeVisible(WebElement element) {
         return wait.until(ExpectedConditions.visibilityOf(element));
     }
@@ -52,6 +82,7 @@ public class BasePage {
 
     /**
      * General method to put thread to sleep
+     *
      * @param millis
      */
     public void sleep(final long millis) {
