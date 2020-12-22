@@ -32,9 +32,7 @@ public class TestBase {
     public static void initialization() {
         String appPath = System.getProperty("user.dir") + File.separator + "app" + File.separator;
         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
-        System.out.printf("This " + props.getProperty("androidAutomationName"));
-        System.out.printf("This " + props.getProperty("androidAppPackage"));
-        System.out.printf("This " + props.getProperty("androidAppActivity"));
+        desiredCapabilities.setCapability("autoGrantPermissions", true);
         desiredCapabilities.setCapability("automationName", props.getProperty("androidAutomationName"));
         desiredCapabilities.setCapability("appPackage", props.getProperty("androidAppPackage"));
         desiredCapabilities.setCapability("appActivity", props.getProperty("androidAppActivity"));

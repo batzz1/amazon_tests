@@ -1,0 +1,9 @@
+<suite name="Assignment">
+
+    <test name="Amazon App tests">
+
+        <classes>
+            <class name="com.qa.tests.amazon.AmazonAppTests"></class>
+        </classes>
+    </test>
+</suite>

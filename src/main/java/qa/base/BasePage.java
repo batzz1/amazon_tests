@@ -1,6 +1,8 @@
 package qa.base;
 
 
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileBy;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -16,6 +18,36 @@ public class BasePage {
     public BasePage(AndroidDriver driver) {
         this.driver = driver;
         wait = new WebDriverWait(this.driver, 40);
+    }
+
+    /***
+     * Type Text
+     * @param element
+     * @param text
+     */
+    public void sendKeys(WebElement element, String text) {
+        waitForElementToBeVisible(element).click();
+        element.clear();
+        element.sendKeys(text);
+    }
+
+    /**
+     * Tap on Element
+     *
+     * @param element
+     */
+    public void tap(WebElement element) {
+        waitForElementToBeClickable(element, 20).click();
+    }
+
+    /**
+     * Get Text from a WebElement
+     *
+     * @param element
+     * @return
+     */
+    public String getText(WebElement element) {
+        return waitForElementToBeVisible(element, 20).getText();
     }
 
     public WebElement waitForElementToBeVisible(WebElement element) {
@@ -52,6 +84,7 @@ public class BasePage {
 
     /**
      * General method to put thread to sleep
+     *
      * @param millis
      */
     public void sleep(final long millis) {
@@ -63,4 +96,22 @@ public class BasePage {
         }
     }
 
+    public WebElement scrollToAnElementByText(String text) {
+        return driver.findElement(MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector())" +
+                ".scrollIntoView(new UiSelector().text(\"" + text + "\"));"));
+    }
+
+    /**
+     * Scrolls and click on text
+     * @param visibleText
+     */
+    public void scrollAndClick(String visibleText) {
+        driver.findElementByAndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\"" + visibleText + "\").instance(0))").click();
+    }
+
+    public void scrollToText(String text) {
+        driver.findElementByAndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\"" + text + "\").instance(0))").isEnabled();
+    }
 }
+
+
