@@ -1,6 +1,5 @@
-package amazon;
+package com.qa.tests.amazon;
 
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import qa.Constants;
