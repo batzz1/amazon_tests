@@ -1,5 +1,6 @@
 package com.qa.tests.amazon;
 
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import qa.Constants;
@@ -42,5 +43,10 @@ public class AmazonAppTests extends TestBase {
         productDetailsPage.tapOnAddToCart();
         assertTrue(productDetailsPage.isProductAddedToCart(), "Product Not added To Cart");
         productDetailsPage.tapOnCheckOut();
+    }
+
+    @AfterMethod
+    public void tearDown() {
+        driver.quit();
     }
 }
