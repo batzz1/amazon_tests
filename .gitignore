@@ -1,0 +1,9 @@
+.idea/*
+*.iml
+target/*
+/target/
+screenshots/
+test-output
+gradle/wrapper
+/app/*
+.gradle/*
