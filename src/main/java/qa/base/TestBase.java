@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 public class TestBase {
 
@@ -42,6 +43,7 @@ public class TestBase {
 
         try {
             driver = new AndroidDriver(new URL(props.getProperty("appiumURL")), desiredCapabilities);
+            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }

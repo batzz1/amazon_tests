@@ -1,7 +1,6 @@
 package qa.base;
 
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
@@ -103,6 +102,7 @@ public class BasePage {
 
     /**
      * Scrolls and click on text
+     *
      * @param visibleText
      */
     public void scrollAndClick(String visibleText) {
